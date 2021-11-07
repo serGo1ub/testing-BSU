@@ -1,4 +1,4 @@
-<h1><a href=""https://www.tez-tour.com>Tez-tour</a> Тест-кейсы</h1>
+<h1><a href="https://www.tez-tour.com/">Tez-tour</a> Тест-кейсы</h1>
 
 <h3>№1. Проверка "Подбора туров"</h3>
 <p>Шаги</p>
