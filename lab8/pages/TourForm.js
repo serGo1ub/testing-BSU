@@ -3,10 +3,10 @@ const { waitTableHotels } = require('../utils/tour.util');
 
 class TourForm extends TourPage {
 
-  _countryCode = 4106029;
+  _countryCode = '4106029';
   _hotelName = 'NESVIZH';
-  _hotelRateCode = 2567;
-  _pansionCode = 15350;
+  _hotelRateCode = '2567';
+  _pansionCode = '15350';
 
   isTourFormComplete = false;
 
