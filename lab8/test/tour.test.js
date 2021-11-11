@@ -19,7 +19,7 @@ describe('Test tour site', function(){
         TourForm.openHotelsTab('body > div.layout > div.content > div.index-page-block1 > div > div > div > ul > li:nth-child(2) > a');
         TourForm.setTourFormValues();
         TourForm.findHotels();
-        const isFoundHotels = !!(await waitTableHotels());
+        // const isFoundHotels = !!(await waitTableHotels());
         // console.log('hotels', hotels);
         // const isFoundHotels = !!(await TourForm.getFoundHotelsLength('#grid-list > tbody'));
         // assert.ok(isFoundHotels);
