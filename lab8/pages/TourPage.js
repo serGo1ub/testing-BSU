@@ -1,6 +1,7 @@
 const webdriver = require('selenium-webdriver');
 const { By } = webdriver;
 const driver = new webdriver.Builder().forBrowser('chrome').build();
+driver.manage().setTimeouts({implicit: (5000)});
 
 class TourPage {
 
