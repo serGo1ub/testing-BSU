@@ -1,5 +1,4 @@
 const { TourPage } = require ('./TourPage');
-const { waitTableHotels } = require('../utils/tour.util');
 
 class TourForm extends TourPage {
 
@@ -18,11 +17,10 @@ class TourForm extends TourPage {
     this.isTourFormComplete = true;
   }
 
-  async findHotels() {
+  findHotels() {
     if (this.isTourFormComplete) {
       this.clickByCss('#hs-form > div.search-btn-point > input');
       this.isTourFormComplete = false;
-      await waitTableHotels();
     }
   }
 }
