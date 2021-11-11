@@ -6,7 +6,7 @@ const { waitTableHotels } = require('../utils/tour.util');
 const { By, until } = require('selenium-webdriver');
 
 describe('Test tour site', function(){
-    // this.timeout(50000);
+    this.timeout(50000);
 
     beforeEach(function() {
         TourForm.goToTourSite(tourSiteUrl);
@@ -27,7 +27,7 @@ describe('Test tour site', function(){
             .then(function(hotels){
             return hotels.length;
         }));
-        driver.manage().setTimeouts({implicit: (5000)});
+        // driver.manage().setTimeouts({implicit: (5000)});
 
         // console.log('hotels', hotels);
         // const isFoundHotels = !!(await TourForm.getFoundHotelsLength('#grid-list > tbody'));
