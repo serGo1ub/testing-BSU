@@ -11,7 +11,7 @@ describe('Test tour site', function(){
     });
 
     afterEach(function(){
-        driver.quit();
+        // driver.quit();
     });
 
     it('Search hotels with correct validation', async function() {
