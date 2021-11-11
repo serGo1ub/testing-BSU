@@ -3,15 +3,17 @@ const assert = require('assert');
 const { driver } = require('../pages/TourPage');
 const { tourSiteUrl } = require('../utils/tour.util');
 const { waitTableHotels } = require('../utils/tour.util');
+const { By, until } = require('selenium-webdriver');
 
 describe('Test tour site', function(){
+    this.timeout(50000);
 
     beforeEach(function() {
         TourForm.goToTourSite(tourSiteUrl);
     });
 
     afterEach(function(){
-        // driver.quit();
+        driver.quit();
     });
 
     it('Search hotels with correct validation', async function() {
@@ -19,9 +21,14 @@ describe('Test tour site', function(){
         TourForm.openHotelsTab('body > div.layout > div.content > div.index-page-block1 > div > div > div > ul > li:nth-child(2) > a');
         TourForm.setTourFormValues();
         TourForm.findHotels();
-        // const isFoundHotels = !!(await waitTableHotels());
+
+        const isFoundHotels = !!(await driver.wait(until.elementLocated(By.css('#grid-list > tbody')))
+        .findElements(By.css('tr'))
+            .then(function(hotels){
+            return hotels.length;
+        }));
         // console.log('hotels', hotels);
         // const isFoundHotels = !!(await TourForm.getFoundHotelsLength('#grid-list > tbody'));
-        // assert.ok(isFoundHotels);
+        assert.ok(isFoundHotels);
     })
 })
