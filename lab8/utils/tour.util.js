@@ -3,7 +3,7 @@ const { By, until } = require('selenium-webdriver');
 const tourSiteUrl = 'https://www.tez-tour.com/';
 
 async function waitTableHotels() {
-    return driver.wait(until.elementLocated(By.className('hotel-list')));
+    return driver.wait(until.elementLocated(By.css('#grid-list > tbody')));
 }
 
 module.exports = {
