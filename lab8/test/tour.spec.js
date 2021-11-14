@@ -5,16 +5,17 @@ const { tourSiteUrl } = require('../utils/tour.util');
 const { waitTableHotels } = require('../utils/tour.util');
 
 describe('Test tour site', function () {
+    this.timeout(0);
 
-  beforeEach(() => {
+  beforeEach(function () {
     TourForm.goToTourSite(tourSiteUrl);
   });
 
-  afterEach(() => {
-      driver.quit();
+  afterEach(async function () {
+      driver && driver.quit();
   });
 
-  it('Search hotel with correct validation', async () => {
+  it('Search hotel with correct validation', async function() {
     TourForm
       .closeWelcomeModal('#fancybox-close')
       .openHotelsTab('body > div.layout > div.content > div.index-page-block1 > div > div > div > ul > li:nth-child(2) > a')
