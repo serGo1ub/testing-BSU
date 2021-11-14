@@ -1,11 +1,17 @@
 const webdriver = require('selenium-webdriver');
+const chrome = require("selenium-webdriver/chrome");
+const chromeOptions = new chrome.Options();
+chromeOptions.addArguments("test-type");
+chromeOptions.addArguments("start-maximized");
+chromeOptions.addArguments("--js-flags=--expose-gc");
+chromeOptions.addArguments("--enable-precise-memory-info");
+chromeOptions.addArguments("--disable-popup-blocking");
+chromeOptions.addArguments("--disable-default-apps");
+chromeOptions.addArguments("--disable-infobars");
 const { By } = webdriver;
-const driver = new webdriver.Builder().forBrowser('chrome').build();
+const driver = new webdriver.Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
 
 class TourPage {
-
-  constructor(){
-  }
 
   goToTourSite(theURL){
     driver.get(theURL);
