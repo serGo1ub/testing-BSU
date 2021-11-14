@@ -15,6 +15,7 @@ class TourForm extends TourPage {
     this.chooseHotelLevel(this._hotelRateCode);
     this.choosePansion(this._pansionCode);
     this.isTourFormComplete = true;
+    return this;
   }
 
   findHotels() {

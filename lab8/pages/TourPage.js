@@ -3,11 +3,9 @@ const chrome = require("selenium-webdriver/chrome");
 const chromeOptions = new chrome.Options();
 chromeOptions.addArguments("test-type");
 chromeOptions.addArguments("start-maximized");
-chromeOptions.addArguments("--js-flags=--expose-gc");
-chromeOptions.addArguments("--enable-precise-memory-info");
-chromeOptions.addArguments("--disable-popup-blocking");
-chromeOptions.addArguments("--disable-default-apps");
-chromeOptions.addArguments("--disable-infobars");
+chromeOptions.addArguments("--headless");
+chromeOptions.addArguments("--no-sandbox");
+chromeOptions.addArguments("--disable-dev-shm-usage");
 const { By } = webdriver;
 const driver = new webdriver.Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
 
@@ -19,10 +17,12 @@ class TourPage {
 
   closeWelcomeModal(css) {
     this.clickByCss(css);
+    return this;
   }
 
   openHotelsTab(css) {
     this.clickByCss(css);
+    return this;
   }
 
   getFoundHotelsLength(css) {

@@ -4,23 +4,26 @@ const { driver } = require('../pages/TourPage');
 const { tourSiteUrl } = require('../utils/tour.util');
 const { waitTableHotels } = require('../utils/tour.util');
 
-describe('Test tour site', function(){
+describe('Test tour site', function () {
 
-    beforeEach(() => {
-        TourForm.goToTourSite(tourSiteUrl);
-    });
+  beforeEach(() => {
+    TourForm.goToTourSite(tourSiteUrl);
+  });
 
-    afterEach(async () => driver.quit());
+  afterEach(() => {
+      driver.quit();
+  });
 
-    it('Search hotel with correct validation', async () => {
-        TourForm.closeWelcomeModal('#fancybox-close');
-        TourForm.openHotelsTab('body > div.layout > div.content > div.index-page-block1 > div > div > div > ul > li:nth-child(2) > a');
-        TourForm.setTourFormValues();
-        TourForm.findHotels();
+  it('Search hotel with correct validation', async () => {
+    TourForm
+      .closeWelcomeModal('#fancybox-close')
+      .openHotelsTab('body > div.layout > div.content > div.index-page-block1 > div > div > div > ul > li:nth-child(2) > a')
+      .setTourFormValues()
+      .findHotels();
 
-        await waitTableHotels();
-        const isFoundHotel = TourForm.getFoundHotelsLength('#grid-list > tbody');
+    await waitTableHotels();
+    const isFoundHotel = TourForm.getFoundHotelsLength('#grid-list > tbody');
 
-        assert.ok(isFoundHotel);
-    })
+    assert.ok(isFoundHotel);
+  })
 })
