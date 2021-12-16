@@ -8,20 +8,20 @@ class User {
     this.#password = password;
   }
 
-  setEmail(email) {
-    this.#email = email;
-  }
-
   getEmail() {
     return this.#email;
   }
 
-  setPassword(password) {
-    this.#password = password;
-  }
-
   getPassword() {
     return this.#password;
+  }
+
+  setEmail(email) {
+    this.#email = email;
+  }
+
+  setPassword(password) {
+    this.#password = password;
   }
 }
 

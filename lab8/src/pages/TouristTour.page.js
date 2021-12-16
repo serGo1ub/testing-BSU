@@ -5,158 +5,161 @@ class TouristTourPage extends TezTourBase {
 
   #TOURIST_URL = 'https://tourist.tez-tour.com/';
 
-  currentCurrencyCss = '.fixed-bottom-mob-panel .current';
-  USDCurrencyCss = '.right-side ul > li:nth-child(2) > span';
-  currentCurrencyXpath = '//div[text()="USD"]';
-  excursionTabCss = '.storeTab-excursions > a > span';
-  excursionsInputCss = '.ns-excursions .input-enter-text input';
-  excursionNameCss = '.search-items .place-list-item > div > div';
-  findExcursionsButtonCss = '.button_block > button';
-  queryExcursionsCss = 'div:nth-child(1) > div:nth-child(1) > div > div.type';
-  excursionsResult = '.hotels-main-side';
-  favoriteButtonCss = '.favoriteButton i';
-  // = '#form-tour-4cfd0a988cd02bba01703c184456cbd9'
-  favoriteListCss = '.favorite-list-box .popover_conteiner > div';
-  countryTourInputCss = '.arr-point .search-field-head input';
-  countryTourListCss = '.search-items .ref-item-1-c > div > div';
-  findToursButtonCss = '.form-inner .button_block > button';
-  countryToursResultCss = '.is-scroll-here';
-
-  countryInputCss = '.is-main-page .input-enter-text input';
+  _currentCurrencyCss = '.fixed-bottom-mob-panel .current';
+  _USDCurrencyCss = '.right-side ul > li:nth-child(2) > span';
+  _currentCurrencyXpath = '//div[text()="USD"]';
+  _excursionTabCss = '.storeTab-excursions > a > span';
+  _excursionsInputCss = '.ns-excursions .input-enter-text input';
+  _excursionNameCss = '.search-items .place-list-item > div > div';
+  _findExcursionsButtonCss = '.button_block > button';
+  _queryExcursionsCss = 'div:nth-child(1) > div:nth-child(1) > div > div.type';
+  _excursionsResult = '.hotels-main-side';
+  _favoriteButtonCss = '.favoriteButton i';
+  _favoriteListCss = '.favorite-list-box .popover_conteiner > div';
+  _countryTourInputCss = '.arr-point .search-field-head input';
+  _countryTourListCss = '.search-items .ref-item-1-c > div > div';
+  _findToursButtonCss = '.form-inner .button_block > button';
+  _countryToursResultCss = '.is-scroll-here';
 
   constructor(driver) {
     super(driver);
   }
 
+  async getFavoriteListValue() {
+    const favoriteElement = await this.driver.findElement(By.css(this._favoriteListCss));
+    this.logger.info('Get message that indicate empty favorite list');
+    return favoriteElement.getText();
+  }
+
+  async getExcursionsToVena() {
+    const excursions = await this.driver.findElements(By.css(this._queryExcursionsCss));
+    const excursionsName = await Promise.all(excursions.map(excursion => excursion.getText()));
+    this.logger.info('Get excursions in Vena');
+    return excursionsName.every(name => name === 'Вена');
+  }
+
+  async getExcursionsInputValue() {
+    const excursionInput = await this.driver.findElement(By.css(this._excursionsInputCss));
+    return excursionInput.getAttribute('value');
+  }
+
+  async getTourListResult() {
+    const toursResultElement = await this.driver.findElement(By.css(this._countryToursResultCss));
+    this.logger.info('Get tours to Turkey');
+    return toursResultElement.getText();
+  }
+
   async waitCurrencyButton() {
-    return this.driver.wait(until.elementLocated(By.xpath(this.currentCurrencyXpath)));
+    return this.driver.wait(until.elementLocated(By.xpath(this._currentCurrencyXpath)));
   }
 
   async waitExcursionTab() {
-    return this.driver.wait(until.elementLocated(By.css(this.excursionTabCss)));
+    return this.driver.wait(until.elementLocated(By.css(this._excursionTabCss)));
   }
 
   async waitExcursionInput() {
-    return this.driver.wait(until.elementLocated(By.css(this.excursionsInputCss)));
+    return this.driver.wait(until.elementLocated(By.css(this._excursionsInputCss)));
   }
 
   async waitExcursionsMenuToVena() {
-    return this.driver.wait(until.elementLocated(By.css(this.excursionNameCss)));
+    return this.driver.wait(until.elementLocated(By.css(this._excursionNameCss)));
   }
 
   async waitExcursionsTable() {
-    return this.driver.wait(until.elementLocated(By.css(this.excursionsResult)));
+    return this.driver.wait(until.elementLocated(By.css(this._excursionsResult)));
   }
 
   async waitFavoriteList() {
-    console.log('wait');
-    return this.driver.wait(until.elementLocated(By.css(this.favoriteListCss)));
+    return this.driver.wait(until.elementLocated(By.css(this._favoriteListCss)));
   }
 
   async waitCountryToursResult() {
-    return this.driver.wait(until.elementLocated(By.css(this.countryToursResultCss)));
+    return this.driver.wait(until.elementLocated(By.css(this._countryToursResultCss)));
   }
 
   async waitCountryTourInput() {
-    return this.driver.wait(until.elementLocated(By.css(this.countryTourInputCss)));
+    return this.driver.wait(until.elementLocated(By.css(this._countryTourInputCss)));
   }
 
   async waitCountryTourList() {
-    return this.driver.wait(until.elementLocated(By.css(this.countryTourListCss)));
+    return this.driver.wait(until.elementLocated(By.css(this._countryTourListCss)));
   }
 
   async waitFavoriteButton() {
-    return this.driver.wait(until.elementLocated(By.css(this.favoriteButtonCss)));
+    return this.driver.wait(until.elementLocated(By.css(this._favoriteButtonCss)));
   }
 
   goToTouristPage() {
+    this.logger.info('Open tourist page');
     this.driver.get(this.#TOURIST_URL);
     return this;
   }
 
   chooseCountryTour() {
-    this.clickBy('css', this.countryTourListCss);
+    this.logger.info('Choose Turkey from country tours');
+    this.clickBy('css', this._countryTourListCss);
     return this;
   }
 
   openExcursionTab() {
-    this.clickBy('css', this.excursionTabCss);
+    this.logger.info('Open excursion tab');
+    this.clickBy('css', this._excursionTabCss);
     return this;
   }
 
   writeExcursion(excursionName) {
-    this.enterTextBy('css', this.excursionsInputCss, excursionName);
+    this.logger.info('Input excursion in Vena');
+    this.enterTextBy('css', this._excursionsInputCss, excursionName);
     return this;
   }
 
   chooseExcursionToVena() {
-    this.clickBy('css', this.excursionNameCss);
+    this.logger.info('Choose excursions in Vena');
+    this.clickBy('css', this._excursionNameCss);
     return this;
   }
 
   findTours() {
-    this.clickBy('css', this.findToursButtonCss);
+    this.logger.info('Find tours to Turkey');
+    this.clickBy('css', this._findToursButtonCss);
     return this;
-  }
-
-  async getExcursionsInputValue() {
-    const excursionInput = await this.driver.findElement(By.css(this.excursionsInputCss));
-    return excursionInput.getAttribute('value');
   }
 
   findExcursions() {
-    this.clickBy('css', this.findExcursionsButtonCss);
+    this.logger.info('Find excursions in Vena');
+    this.clickBy('css', this._findExcursionsButtonCss);
     return this;
-  }
-
-  async getTourListResult() {
-    const toursResultElement = await this.driver.findElement(By.css(this.countryToursResultCss));
-    return toursResultElement.getText();
   }
 
   openFavoriteList() {
-    this.clickBy('css', this.favoriteButtonCss);
+    this.logger.info('Open favorite list');
+    this.clickBy('css', this._favoriteButtonCss);
     return this;
-  }
-
-  async getFavoriteListValue() {
-    console.log('get');
-    const favoriteElement = await this.driver.findElement(By.css(this.favoriteListCss));
-    return favoriteElement.getText();
-  }
-
-  async getExcursionsToVena() {
-    const excursions = await this.driver.findElements(By.css(this.queryExcursionsCss));
-    const excursionsName = await Promise.all(excursions.map(excursion => excursion.getText()));
-
-    return excursionsName.every(name => name === 'Вена');
   }
 
   writeCountryNameTour(countryName) {
-    this.enterTextBy('css', this.countryTourInputCss, countryName);
-    return this;
-  }
-
-  inputCountry() {
-    this.enterTextBy('css', this.countryInputCss, 'Турция');
+    this.logger.info('Write Turkey to country name field');
+    this.enterTextBy('css', this._countryTourInputCss, countryName);
     return this;
   }
 
   openCurrencyMenu() {
-    this.clickBy('css', this.currentCurrencyCss);
+    this.logger.info('Open currency menu');
+    this.clickBy('css', this._currentCurrencyCss);
     return this;
   }
 
   changeCurrencyToUSD() {
-    this.clickBy('css', this.USDCurrencyCss);
+    this.logger.info('Change current currency to USD');
+    this.clickBy('css', this._USDCurrencyCss);
     return this;
   }
 
   async getCurrentCurrency() {
-    const currencyButton = await this.driver.findElement(By.css(this.currentCurrencyCss));
+    this.logger.info('Get current currency');
+    const currencyButton = await this.driver.findElement(By.css(this._currentCurrencyCss));
     return currencyButton.getText();
   }
-
 
 }
 

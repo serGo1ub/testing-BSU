@@ -1,7 +1,9 @@
 const { createLogger, format, transports } = require("winston");
-const { By, until } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 
 class TezTourBasePage {
+
+  _welcomeModalCss = '#fancybox-close';
 
   constructor(driver) {
     this.driver = driver;
@@ -30,7 +32,8 @@ class TezTourBasePage {
   }
 
   closeWelcomeModal() {
-    this.clickBy('css', this.welcomeModalCss);
+    this.logger.info('Close welcome modal');
+    this.clickBy('css', this._welcomeModalCss);
     return this;
   }
 

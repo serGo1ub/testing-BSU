@@ -1,6 +1,6 @@
 const assert = require('assert');
 const Driver = require("../driver/Driver");
-const LoginPage = require("../pages/Login.page");
+const LoginPage = require("../pages/TezTourLogin.page");
 const UserCreator = require("../services/UserCreator.service");
 
 describe('Tez tour login page', () => {
