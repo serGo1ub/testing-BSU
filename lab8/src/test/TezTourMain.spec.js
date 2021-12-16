@@ -37,30 +37,30 @@ describe('Test tour main page', function () {
     assert.strictEqual(isFoundHotel, hotelInfo.getHotelName());
   });
 
-  // it('Should change our geolocation to Voronezh', async function() {
-  //   tezTourMainPage
-  //     .goToTourSite();
-  //
-  //   await tezTourMainPage.waitWelcomeModal();
-  //
-  //   tezTourMainPage
-  //     .closeWelcomeModal()
-  //     .openGeolocationMenu();
-  //
-  //   // await tezTourMainPage.waitGeolocationMenu();
-  //   //
-  //   await driver.sleep(5000);
-  //
-  //   tezTourMainPage
-  //     .changeGeolocationToVoronezh();
-  //
-  //   await tezTourMainPage.waitGeolocationButton();
-  //   //
-  //   // await driver.sleep(5000);
-  //
-  //   const geolocation = await tezTourMainPage.getGeolocation();
-  //
-  //   assert.strictEqual(geolocation, 'Воронеж');
-  // });
+  it('Should change our geolocation to Voronezh', async function() {
+    tezTourMainPage
+      .goToTourSite();
+
+    await tezTourMainPage.waitWelcomeModal();
+
+    tezTourMainPage
+      .closeWelcomeModal()
+      .openGeolocationMenu();
+
+    // await tezTourMainPage.waitGeolocationMenu();
+    //
+    await driver.sleep(5000);
+
+    tezTourMainPage
+      .changeGeolocationToVoronezh();
+
+    await tezTourMainPage.waitGeolocationButton();
+    //
+    // await driver.sleep(5000);
+
+    const geolocation = await tezTourMainPage.getGeolocation();
+
+    assert.strictEqual(geolocation, 'Воронеж');
+  });
 
 })
