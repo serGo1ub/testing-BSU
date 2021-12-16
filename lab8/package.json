@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 100000"
+    "test": "mocha src/test/*.js --timeout 50000"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "chromedriver": "^95.0.0",
+    "js-logger": "^1.6.1",
     "mocha": "^8.3.2",
-    "selenium-webdriver": "^4.0.0-alpha.7"
+    "selenium-webdriver": "^4.0.0-alpha.7",
+    "winston": "^3.3.3"
   }
 }
