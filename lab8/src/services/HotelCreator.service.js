@@ -8,7 +8,7 @@ class HotelCreator {
   static dev_HOTEL = 'dev.hotel.properties';
 
   static async withHotelInfoFromProperty() {
-    const propertyName = process.argv[5].slice(1);
+    const propertyName = process.argv[process.argv.length - 1].slice(1);
     console.log(process.argv);
     const isPropertyNameExists = environments.includes(propertyName);
     if (isPropertyNameExists) {
