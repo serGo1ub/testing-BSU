@@ -67,7 +67,6 @@ class TezTourMainPage extends TezTourBasePage {
   }
 
   changeGeolocationToVoronezh() {
-    this.logger.info('Change geolocation to Voronezh');
     this.clickBy('css', this._voronezhGeolocationButtonCss);
     return this;
   }
