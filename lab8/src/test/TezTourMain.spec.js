@@ -25,6 +25,7 @@ describe('Test tour main page', function () {
 
     await tezTourMainPage.waitWelcomeModal();
 
+    console.log(hotelInfo.getHotelName());
     tezTourMainPage
       .closeWelcomeModal()
       .openHotelsTab()
