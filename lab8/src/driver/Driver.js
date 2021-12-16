@@ -10,7 +10,7 @@ class DriverManager {
 
     chromeOptions.addArguments("test-type");
     chromeOptions.addArguments("start-maximized");
-    // chromeOptions.addArguments("--headless");
+    chromeOptions.addArguments("--headless");
     chromeOptions.addArguments("--no-sandbox");
     chromeOptions.addArguments("--disable-dev-shm-usage");
 
