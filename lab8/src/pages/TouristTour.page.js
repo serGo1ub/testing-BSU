@@ -15,7 +15,8 @@ class TouristTourPage extends TezTourBase {
   queryExcursionsCss = 'div:nth-child(1) > div:nth-child(1) > div > div.type';
   excursionsResult = '.hotels-main-side';
   favoriteButtonCss = '.favoriteButton i';
-  favoriteListCss = '.popover_conteiner > div';
+  // = '#form-tour-4cfd0a988cd02bba01703c184456cbd9'
+  favoriteListCss = '.favorite-list-box .popover_conteiner > div';
   countryTourInputCss = '.arr-point .search-field-head input';
   countryTourListCss = '.search-items .ref-item-1-c > div > div';
   findToursButtonCss = '.form-inner .button_block > button';
@@ -48,6 +49,7 @@ class TouristTourPage extends TezTourBase {
   }
 
   async waitFavoriteList() {
+    console.log('wait');
     return this.driver.wait(until.elementLocated(By.css(this.favoriteListCss)));
   }
 
@@ -61,6 +63,10 @@ class TouristTourPage extends TezTourBase {
 
   async waitCountryTourList() {
     return this.driver.wait(until.elementLocated(By.css(this.countryTourListCss)));
+  }
+
+  async waitFavoriteButton() {
+    return this.driver.wait(until.elementLocated(By.css(this.favoriteButtonCss)));
   }
 
   goToTouristPage() {
@@ -114,6 +120,7 @@ class TouristTourPage extends TezTourBase {
   }
 
   async getFavoriteListValue() {
+    console.log('get');
     const favoriteElement = await this.driver.findElement(By.css(this.favoriteListCss));
     return favoriteElement.getText();
   }

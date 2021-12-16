@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha src/test/*.js --timeout 100000"
+    "test": "mocha src/test/*.js --timeout 50000"
   },
   "author": "",
   "license": "ISC",

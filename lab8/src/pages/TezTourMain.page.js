@@ -47,10 +47,12 @@ class TezTourMainPage extends TezTourBasePage {
   }
 
   async waitGeolocationMenu() {
+    console.log('waitGeolocationMenu');
     return this.driver.wait(until.elementLocated(By.css(this.geolocationMenuCss)));
   }
 
   async waitGeolocationButton() {
+    console.log('waitGeolocationButton');
     return this.driver.wait(until.elementLocated(By.xpath(this.voronezhGeolocationXpath)));
   }
 
@@ -66,11 +68,13 @@ class TezTourMainPage extends TezTourBasePage {
   }
 
   changeGeolocationToVoronezh() {
+    console.log('changeGeolocationToVoronezh');
     this.clickBy('css', this.voronezhGeolocationButtonCss);
     return this;
   }
 
   async getGeolocation() {
+    console.log('getGeolocation');
     const geolocationButton = await this.driver.findElement(By.css(this.geolocationButtonCss));
     return geolocationButton.getText();
   }

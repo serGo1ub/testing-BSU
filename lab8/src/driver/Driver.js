@@ -12,6 +12,7 @@ class DriverManager {
     chromeOptions.addArguments("start-maximized");
     chromeOptions.addArguments("--headless");
     chromeOptions.addArguments("--no-sandbox");
+    chromeOptions.addArguments("window-size=1920,1080");
     chromeOptions.addArguments("--disable-dev-shm-usage");
 
     this.driver = await new Builder()

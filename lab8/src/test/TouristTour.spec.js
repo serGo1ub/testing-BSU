@@ -79,14 +79,19 @@ describe('Test tourist page', () => {
   });
 
   it('Should get empty favorite list by default', async function() {
-    touristTour.goToTouristPage().openFavoriteList();
+    touristTour.goToTouristPage();
 
+    await touristTour.waitFavoriteButton();
+
+    touristTour.openFavoriteList();
+
+    // await driver.sleep(5000);
     await touristTour.waitFavoriteList();
 
-    const vv = await touristTour.getFavoriteListValue();
+    const favoriteList = await touristTour.getFavoriteListValue();
     // console.log(vv);
 
-    assert.ok(vv.includes("Добавляйте понравившиеся туры"));
+    assert.ok(favoriteList.includes("Добавляйте понравившиеся туры"));
   });
 
   it('Should change current currency to USD', async function() {
