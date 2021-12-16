@@ -17,7 +17,7 @@ class TezTourMainPage extends TezTourBasePage {
   tableHotelsCss = '#grid-list > tbody > tr';
   geolocationButtonCss = '#city-dropdown > i > b';
   geolocationMenuCss = '#city-list';
-  voronezhGeolocationButtonCss = '#city-list ul:nth-child(1) > li:nth-child(6) > a';
+  voronezhGeolocationButtonCss = '#city-list ul:nth-child(1) > li:nth-child(6) > a[ref="vrn"]';
   voronezhGeolocationXpath = '//b[text()="Воронеж"]';
 
   constructor(driver) {
