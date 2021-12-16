@@ -9,6 +9,7 @@ class HotelCreator {
 
   static async withHotelInfoFromProperty() {
     const propertyName = process.argv[5].slice(1);
+    console.log(process.argv);
     const isPropertyNameExists = environments.includes(propertyName);
     if (isPropertyNameExists) {
       return new Hotel(await TestDataReader.getTestData(this[`${ propertyName }_HOTEL`]));
