@@ -6,7 +6,8 @@ class TestDataReader {
     console.log(fileName);
     return (await fs.readFile(`./resources/${ fileName }`, 'utf-8'))
       .toString()
-      .split('\r\n')
+      .replace(/\r\n/g,'\n')
+      .split('\n')
       .reduce((queryInfo, resourceString) => {
       if (resourceString.length > 0) {
         const [fieldName, fieldValue] = resourceString.split('=');
