@@ -16,9 +16,7 @@ describe('Test tour main page', function () {
   afterEach(async function () {
     await Driver.closeDriver();
   });
-//
-// // npm test -- -qa
-//
+
   it('Should get certain hotel', async function () {
     const hotelInfo = await HotelCreator.withHotelInfoFromProperty();
 
@@ -56,7 +54,7 @@ describe('Test tour main page', function () {
     await tezTourMainPage.waitGeolocationButton();
 
     const geolocation = await tezTourMainPage.getGeolocation();
-    // console.log('geo', geolocation);
+
     assert.strictEqual(geolocation, 'Воронеж');
   });
 
